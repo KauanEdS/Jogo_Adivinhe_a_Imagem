@@ -212,8 +212,21 @@ export default function JogoDeAdivinhacao() {
     }
   }, [turnosNaRodada, roundAtual, totalRounds, timeDaVez, imagensEmJogo, indiceImagem, time1Pontos, time2Pontos]);
 
+  // AÇÕES DOS BOTÕES:
   const handleAcertou = () => { avancarTurno(true); };
-  const handlePularImagem = () => avancarTurno(false, false);
+  
+  // NOVA LÓGICA DO BOTÃO PULAR: Apenas passa para a próxima imagem.
+  const handlePularImagem = () => { 
+    const total = imagensEmJogo.length;
+    if (indiceImagem + 1 < total) {
+      setIndiceImagem(prev => prev + 1);
+    } else {
+      // Se acabarem as imagens do jogo enquanto pula, o jogo encerra
+      if (time1Pontos !== time2Pontos) setMostrarConfete(true);
+      setTela('fim');
+    }
+  };
+  
   const handlePassarVez   = () => avancarTurno(false, true);
 
   return (
@@ -293,7 +306,6 @@ export default function JogoDeAdivinhacao() {
         {/* JOGO */}
         {tela === 'jogo' && (
           <div className="flex-1 flex flex-col h-full w-full relative overflow-hidden">
-            {/* Header reduzido */}
             <div className="pt-3 pb-2 px-3 md:px-6 border-b border-purple-700/30 shrink-0 z-10 w-full bg-[#3d3868]">
               <div className="w-full max-w-3xl mx-auto">
                 <div className="text-center mb-2">
@@ -321,14 +333,12 @@ export default function JogoDeAdivinhacao() {
               </div>
             </div>
 
-            {/* Main Area: flex-1 e min-h-0 garantem que não passe da tela */}
             <div className="flex-1 flex flex-col p-3 md:p-4 gap-3 items-center justify-between w-full max-w-2xl mx-auto min-h-0 overflow-hidden">
               
               <h2 className="text-lg md:text-2xl font-black text-white text-center uppercase tracking-tight shrink-0">
                 {extrairNome(imagensEmJogo[indiceImagem])}
               </h2>
               
-              {/* Imagem flexível: Cresce o máximo possível sem quebrar a tela */}
               <div className="flex-1 w-full min-h-0 flex items-center justify-center">
                 <img src={imagensEmJogo[indiceImagem]} alt="Desenho"
                   className="max-w-full max-h-full object-contain"
@@ -336,7 +346,6 @@ export default function JogoDeAdivinhacao() {
                 />
               </div>
 
-              {/* Botões Menores */}
               <div className="w-full max-w-[320px] flex flex-col space-y-2 shrink-0">
                 <button onClick={handleAcertou}
                   className={`w-full text-white py-3 md:py-4 rounded-2xl font-black text-xl md:text-2xl shadow-lg active:scale-95 transition-all ${timeDaVez === 'time1' ? 'bg-indigo-500 hover:bg-indigo-600' : 'bg-pink-500 hover:bg-pink-600'}`}>
