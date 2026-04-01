@@ -53,6 +53,7 @@ O jogo é alimentado pelo arquivo dados_temas.json. Para adicionar novas imagens
     "./caminho/para/leao.jpg"
   ]
 }
+```
 
 Dica: O jogo extrai o nome automaticamente do link/caminho do arquivo. Por exemplo, um arquivo nomeado O_Rei_Leao.jpg será formatado e exibido na tela como "O Rei Leao".
 
