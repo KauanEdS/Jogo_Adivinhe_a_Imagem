@@ -20,7 +20,7 @@ function Confete({ ativo, onFim }) {
       const t = setTimeout(onFim, 2000);
       return () => clearTimeout(t);
     }
-  }, [ativo]);
+  }, [ativo, onFim]);
 
   if (!ativo) return null;
 
@@ -83,7 +83,7 @@ function ContagemRegressiva({ timeDaVez, time1Nome, time2Nome, contador, setCont
     if (contador <= 0) { onFim(); return; }
     const timer = setTimeout(() => setContador(prev => prev - 1), 1000);
     return () => clearTimeout(timer);
-  }, [contador]);
+  }, [contador, onFim, setContador]);
 
   const nomeTime = timeDaVez === 'time1' ? time1Nome : time2Nome;
   const corTime  = timeDaVez === 'time1' ? '#818cf8' : '#f472b6';
@@ -116,7 +116,6 @@ function ContagemRegressiva({ timeDaVez, time1Nome, time2Nome, contador, setCont
 /* ── COMPONENTE PRINCIPAL ── */
 export default function JogoDeAdivinhacao() {
   const [tela, setTela] = useState('menu');
-  const [temaAtual, setTemaAtual] = useState(null);
 
   const [imagensEmJogo, setImagensEmJogo] = useState([]);
   const [indiceImagem, setIndiceImagem] = useState(0);
@@ -132,7 +131,7 @@ export default function JogoDeAdivinhacao() {
   const [turnosNaRodada, setTurnosNaRodada] = useState(0);
   const [contador, setContador] = useState(5);
   const [mostrarConfete, setMostrarConfete] = useState(false);
-  const [proximoTime, setProximoTime] = useState(null);
+
 
   const extrairNome = (url) => {
     if (!url) return '';
@@ -141,7 +140,6 @@ export default function JogoDeAdivinhacao() {
 
   const reiniciarMenu = () => {
     setTela('menu');
-    setTemaAtual(null);
     setIndiceImagem(0);
     setTime1Pontos(0);
     setTime2Pontos(0);
@@ -150,7 +148,7 @@ export default function JogoDeAdivinhacao() {
     setImagensEmJogo([]);
     setContador(5);
     setMostrarConfete(false);
-    setProximoTime(null);
+    
   };
 
   const iniciarJogo = (tema) => {
@@ -158,7 +156,7 @@ export default function JogoDeAdivinhacao() {
       alert('Digite os nomes dos dois times para começar.');
       return;
     }
-    setTemaAtual(tema);
+    
     setIndiceImagem(0);
     setTime1Pontos(0);
     setTime2Pontos(0);
@@ -213,7 +211,6 @@ export default function JogoDeAdivinhacao() {
     }
 
     if (deveTracar) {
-      setProximoTime(novoTime);
       setTimeDaVez(novoTime);
       setTela('troca');
     }

@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# 🎮 Quem sou eu? (Jogo de Adivinhação)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Um jogo de adivinhação local baseado em turnos e times, construído com **React** e **Tailwind CSS**. Reúna os amigos, dividam-se em duas equipes e testem seus conhecimentos em diferentes temas!
 
-## Available Scripts
+## ✨ Funcionalidades
 
-In the project directory, you can run:
+* **Multijogador Local:** Jogue com dois times disputando frente a frente no mesmo dispositivo.
+* **Sistema de Rounds Personalizável:** Escolha a quantidade de rounds antes de iniciar a partida (de 1 a 99).
+* **Gestão de Turnos:** Telas dedicadas de "Contagem Regressiva" e "Troca de Vez" para garantir que ninguém trapaceie espiando a tela na vez do outro time.
+* **Placar Dinâmico:** Acompanhamento de pontuação em tempo real no topo da tela.
+* **Temas Dinâmicos:** As imagens e categorias são carregadas de um arquivo JSON facilmente customizável.
+* **Design Responsivo:** Interface fluida, moderna e focada no mobile, mas que funciona perfeitamente no PC.
+* **Animação de Vitória:** Efeito de confete programado do zero utilizando `useMemo` e animações CSS nativas para celebrar o time vencedor!
 
-### `npm start`
+## 🛠️ Tecnologias Utilizadas
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* **React:** Gerenciamento de estado (`useState`, `useEffect`, `useCallback`, `useMemo`) e renderização da interface.
+* **Tailwind CSS:** Para toda a estilização e animações rápidas (`animate-bounce`, `animate-ping`).
+* **JavaScript (ES6+):** Lógica do jogo, embaralhamento de arrays e controle de tempo.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Como rodar o projeto localmente
 
-### `npm test`
+1. **Clone este repositório:**
+   ```bash
+   git clone https://github.com/KauanEdS/Jogo_Adivinhe_a_Imagem
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Acesse a pasta do projeto:**
+    ```bash
+   cd SEU_REPOSITORIO
 
-### `npm run build`
+3. **Instale as dependências:**   
+    ```bash
+    npm install
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4.**Inicie o servidor de desenvolvimento:**
+    ```bash
+    npm start
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+O aplicativo será aberto no seu navegador padrão no endereço http://localhost:3000.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+📁 Como adicionar novos temas e imagens
+O jogo é alimentado pelo arquivo dados_temas.json. Para adicionar novas imagens ou categorias, basta seguir esta estrutura no arquivo:
 
-### `npm run eject`
+```bash
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+{
+  "Filmes de Animação": [
+    "./caminho/para/imagem1.jpg",
+    "./caminho/para/imagem2.jpg"
+  ],
+  "Animais": [
+    "./caminho/para/cachorro.jpg",
+    "./caminho/para/leao.jpg"
+  ]
+}
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Dica: O jogo extrai o nome automaticamente do link/caminho do arquivo. Por exemplo, um arquivo nomeado O_Rei_Leao.jpg será formatado e exibido na tela como "O Rei Leao".
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Desenvolvido por Kauan
