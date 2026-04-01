@@ -132,7 +132,6 @@ export default function JogoDeAdivinhacao() {
   const [contador, setContador] = useState(5);
   const [mostrarConfete, setMostrarConfete] = useState(false);
 
-
   const extrairNome = (url) => {
     if (!url) return '';
     return url.split('/').pop().split('.')[0].replace(/_/g, ' ');
@@ -148,7 +147,6 @@ export default function JogoDeAdivinhacao() {
     setImagensEmJogo([]);
     setContador(5);
     setMostrarConfete(false);
-    
   };
 
   const iniciarJogo = (tema) => {
@@ -156,7 +154,6 @@ export default function JogoDeAdivinhacao() {
       alert('Digite os nomes dos dois times para começar.');
       return;
     }
-    
     setIndiceImagem(0);
     setTime1Pontos(0);
     setTime2Pontos(0);
@@ -177,7 +174,6 @@ export default function JogoDeAdivinhacao() {
     const deveTracar = pontuou || trocarTime;
     const novoTime = timeDaVez === 'time1' ? 'time2' : 'time1';
 
-    // Calcula pontos finais locais para usar na checagem de fim
     const pontosFinais1 = time1Pontos + (pontuou && timeDaVez === 'time1' ? 1 : 0);
     const pontosFinais2 = time2Pontos + (pontuou && timeDaVez === 'time2' ? 1 : 0);
 
@@ -223,13 +219,16 @@ export default function JogoDeAdivinhacao() {
   const handlePassarVez   = () => avancarTurno(false, true);
 
   return (
-    <div className="w-full h-[100dvh] bg-[#2e2a4a] font-sans text-gray-800 flex flex-col overflow-hidden">
+    // RAIZ MANTIDA ORIGINAL (#2e2a4a) com padding (md:p-8) adicionado para desgrudar das bordas no PC
+    <div className="w-full h-[100dvh] bg-[#2e2a4a] font-sans text-gray-800 flex flex-col overflow-hidden md:p-8 lg:p-12">
 
-      {/* Confete global */}
       <Confete ativo={mostrarConfete} onFim={() => setMostrarConfete(false)} />
 
-      <div className="w-full h-full flex flex-col overflow-hidden mx-auto max-w-[1800px] bg-[#3d3868] shadow-2xl shadow-purple-950">
+      {/* CONTAINER MANTIDO ORIGINAL (#3d3868) com cantos arredondados (md:rounded-[2.5rem]) no PC */}
+      <div className="w-full h-full flex flex-col overflow-hidden mx-auto max-w-[1800px] bg-[#3d3868] shadow-2xl shadow-purple-950 md:rounded-[2.5rem]">
 
+        {/* --- DAQUI PARA BAIXO SUAS CORES ESTÃO INTACTAS --- */}
+        
         {/* MENU */}
         {tela === 'menu' && (
           <div className="flex-1 flex flex-col items-center justify-center p-6 md:p-12 text-center space-y-8 overflow-y-auto w-full mx-auto max-w-5xl">
